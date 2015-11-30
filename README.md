@@ -1,4 +1,4 @@
-store-locator README
+STORE LOCATOR README
 ==================
 
 # Get a copy of latest code
