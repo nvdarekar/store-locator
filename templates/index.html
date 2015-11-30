@@ -2,11 +2,12 @@
 <html ng-app ="storeLocatorApp">
     <head>
         <title>Store Locator</title>
-        <link rel="stylesheet" href={{ url_for('static', filename="css/bootstrap.css") }}>
-        <link rel="stylesheet" href={{ url_for('static', filename="css/style.css") }}>           
-        <script src="{{ url_for('static', filename="js/lib/bootstrap/bootstrap.min.js") }}"></script>
-        <script src="{{ url_for('static', filename="js/lib/angular/angular.min.js") }}"></script>       
-        <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&signed_in=true&libraries=places"></script>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" href="{{ url_for('static', filename="bower_components/bootstrap/dist/css/bootstrap.min.css") }}">
+        <link rel="stylesheet" href={{ url_for('static', filename="css/style.css") }}> 
+
+        <script src="{{ url_for('static', filename="bower_components/bootstrap/dist/js/bootstrap.min.js") }}"> </script> 
+        <script src="{{ url_for('static', filename="bower_components/angular/angular.min.js") }}"> </script> <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=places"></script>
         <link rel="shortcut icon" href="">   
     </head>
     <body ng-controller="storeController">
@@ -28,25 +29,35 @@
             </form>
             </div>
             <div id="main" class="container">
-                <h2><b>Stores Nearby You</b></h2>
+                <h2><b> 5 Stores Nearby You</b></h2>
+               
                 <table class="table table-striped">
-                    <tr>
-                        <td><b>Store Id</b></td>
-                        <td><b>Address</b></td>
-                        <td><b>Pincode</b></td>
-                        <td><b>Distance</b></td>
-                    </tr>
-                    <tr ng-repeat="store in stores">
-                        <td ng-bind="store.id"></td>
-                        <td ng-bind="store.address"></td>
-                        <td ng-bind="store.pincode"></td>
-                        <td> 1km </td>           
-                    </tr>
-                </table>    
+                    <tbody>
+                        <tr>
+                            <th><b> SR NO </b></th>
+                            <th><b> Address </b></th>
+                            <th><b> Pincode </b></th>
+                            <th><b> Distance ( in KM )</b></th>
+                            <th><b> Estimated Duration </b></th>
+                            <th><b> Map-Directions </b></th>
+                        </tr>
+                        {% raw %}
+                        <tr ng-repeat="store in stores | orderBy: 'distance'">
+                            <td ng-bind = "$index + 1" > </td>
+                            <td ng-bind = "store.address" id="address-{{ store.id }}">                         
+                            </td>
+                            <td ng-bind = "store.pincode"></td>
+                            <td ng-bind = "store.distance"></td> 
+                            <td ng-bind = "store.estimatedDuration"></td> 
+                            <td> <a id="{{ store.id }}" href="#" ng-click ="showMap($event)"> show </a> </td>     
+                        </tr>
+                        {% endraw %}
+                    </tbody>
+                    
+                </table>  
+               
             </div> 
         <script src="{{ url_for('static', filename="/js/app.js") }}">
         </script>          
     </body>
 </html>
-   
-    

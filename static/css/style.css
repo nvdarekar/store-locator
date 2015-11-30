@@ -1,4 +1,14 @@
 .container {
 	margin: 0% 1% 1% 1%;
-	width:auto;
+	width: auto;
+}
+.map-container {
+	width: 50%; 
+	height: 500px;
+	float: left; 
+	margin-top:1%;
+}
+.direction-panel {
+	width: 50%;
+ 	float: right;
 }

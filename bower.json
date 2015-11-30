@@ -1,0 +1,8 @@
+{
+    "name": "store_locator",
+    "private": true,
+    "dependencies": {
+        "angular": "1.4.8",
+        "bootstrap":"3.3.6"     
+    }
+}
