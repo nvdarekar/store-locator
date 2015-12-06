@@ -1,6 +1,7 @@
 aniso8601==1.1.0
 decorator==4.0.4
 Flask==0.10.1
+Flask-Cors==2.1.2
 ipdb==0.8.1
 ipython==4.0.1
 ipython-genutils==0.1.0

@@ -85,7 +85,11 @@ storeLocatorApp.controller("storeController",
 
     $scope.getStoresNearByPincode = function(){
         var url = "http://127.0.0.1:5000/api/v1/stores/" + $scope.pincode
-        $http.get(url, {cache: true}).success(function(response) {
+        console.log(url)
+        $http.get(url,
+            {cache: true},
+            {headers:{ 'Access-Control-Allow-Origin': '*'}}
+            ).success(function(response) {
             $scope.stores = response.stores;
             angular.forEach($scope.stores, function(store, key){
                 $scope.calculateDistance(store.id, store.address);

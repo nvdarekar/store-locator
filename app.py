@@ -1,9 +1,13 @@
 from flask import (Flask, request, render_template, jsonify)
 import MySQLdb
+from flask.ext.cors import CORS
+
 
 app = Flask(__name__, static_url_path = "")
-db = MySQLdb.connect("localhost", "root", "", "store_locator")  
+cors = CORS(app, resources={r"/api/*": {"origins": "*"}})
+db = MySQLdb.connect("localhost", "root", "", "store_locator")
 cursor = db.cursor()
+
 
 @app.route("/api/v1/stores/<pincode>", methods = ["GET"])
 def get_stores(pincode):
@@ -20,6 +24,7 @@ def get_stores(pincode):
 @app.route("/", methods = ["GET"])
 def home():
     return render_template("index.html")
+
 
 if __name__ == "__main__":
     #app.run(threaded=True , debug=True)
